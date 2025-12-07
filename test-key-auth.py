@@ -95,10 +95,15 @@ def test_connection(private_key):
         print(f"User: {SNOWFLAKE_USER}")
         print(f"Role: {SNOWFLAKE_ROLE}")
         print(f"Warehouse: {SNOWFLAKE_WAREHOUSE}")
+        print(f"Using Private Link Host: {SNOWFLAKE_ACCOUNT}.privatelink.snowflakecomputing.com")
+        
+        # For Private Link, we need to specify the full host URL
+        private_link_host = f"{SNOWFLAKE_ACCOUNT}.privatelink.snowflakecomputing.com"
         
         conn = snowflake.connector.connect(
             user=SNOWFLAKE_USER,
             account=SNOWFLAKE_ACCOUNT,
+            host=private_link_host,
             private_key=private_key,
             role=SNOWFLAKE_ROLE,
             warehouse=SNOWFLAKE_WAREHOUSE,
